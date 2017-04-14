@@ -1,4 +1,4 @@
-// Prutta igång mongoDB med hjälp av att stå i root, dvs. ~
+// Prutta igång mongoDB med hjälp av att stå i root, dvs. ~ 
 // och kör mongod <-- Boom
 
 // Dependencies
@@ -18,6 +18,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
 
 
 // Routes

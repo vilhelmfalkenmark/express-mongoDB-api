@@ -1,4 +1,3 @@
-
 // Dependencies
 const restful = require('node-restful');
 const mongoose = restful.mongoose;
@@ -11,4 +10,4 @@ const productSchema = new mongoose.Schema({
 });
 
 // Return model
-module.exports = restful.model('Products', productSchema);
+ module.exports = restful.model('Products', productSchema);
