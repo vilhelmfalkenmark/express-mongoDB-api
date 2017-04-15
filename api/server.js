@@ -1,8 +1,5 @@
-// BASE SETUP
-// =============================================================================
-// call the packages we need
-const express    = require('express');        // call express
-const app        = express();                 // define our app using express
+const express    = require('express');
+const app        = express();
 const bodyParser = require('body-parser');
 const mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/rest_test');
@@ -13,6 +10,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const port = process.env.PORT || 5000;        // set our port
+
+// Handle CORS
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -34,6 +39,8 @@ router.route('/bears')
         bear.name = req.body.name;  // set the bears name (comes from the request)
         bear.type = req.body.type;  // set the bears rase (comes from the request)
         bear.age = req.body.age;  // set the bears age (comes from the request)
+        bear.image_url = req.body.image_url;  // set the bears age (comes from the request)
+        bear.description = req.body.description;  // set the bears age (comes from the request)
 
         // save the bear and check for errors
         bear.save((err) => {
