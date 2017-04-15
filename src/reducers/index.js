@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import Bears from "./Bears";
+import bears from "./Bears";
 
 const reducer = combineReducers({
-  Bears
+  bears
 })
 
 export default reducer;

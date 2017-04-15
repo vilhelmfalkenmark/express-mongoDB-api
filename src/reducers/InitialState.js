@@ -4,7 +4,8 @@ const InitialState = {
   type: "Bamsebjörn",
   age: 20,
   image_url: null,
-  description: "A very nice bear"
+  description: "A very nice bear",
+  _id: "ijwefoihwef90fwe89e23448"
  }]
 }
 

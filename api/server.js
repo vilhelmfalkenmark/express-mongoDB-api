@@ -36,21 +36,20 @@ router.route('/bears')
     // create a bear (accessed at POST http://localhost:5000/api/bears)
     .post((req, res) => {
         var bear = new Bear();      // create a new instance of the Bear model
-        bear.name = req.body.name;  // set the bears name (comes from the request)
-        bear.type = req.body.type;  // set the bears rase (comes from the request)
-        bear.age = req.body.age;  // set the bears age (comes from the request)
-        bear.image_url = req.body.image_url;  // set the bears age (comes from the request)
-        bear.description = req.body.description;  // set the bears age (comes from the request)
+        bear.name = req.body.name; // set the bears name (comes from the request)
+        bear.type = req.body.type;
+        bear.age = req.body.age;
+        bear.image_url = req.body.image_url;
+        bear.description = req.body.description;
 
         // save the bear and check for errors
         bear.save((err) => {
             if (err) {
              res.send(err);
             } else {
-             res.json({ message: 'Bear created!' });
+             res.json({newBear: bear});
             }
         });
-
     })
 
     .get((req, res) => {
@@ -85,15 +84,17 @@ router.route('/bears/:bear_id')
         if (err) {
          res.send(err);
         }
-
         bear.name = req.body.name;  // update the bears info
-
+        bear.type = req.body.type;  // update the bears info
+        bear.age = req.body.age;  // update the bears info
+        bear.description = req.body.description;  // update the bears info
+        bear.image_url = req.body.image_url;  // update the bears info
         // save the bear
         bear.save((err) => {
             if (err) {
              res.send(err);
             } else {
-             res.json({ message: 'Bear updated!' });
+             res.json({ updatedBear: bear });
             }
         });
     });
