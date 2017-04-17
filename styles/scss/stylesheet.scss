@@ -1,14 +1,90 @@
 // sass --watch scss:css
+
+/////////////////////////////////////////////
+// FLEX ROW
+/////////////////////////////////////////////
+@mixin flex-row() {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+@mixin flex-gtr-col($columns, $gutter) {
+  $percentage: percentage(1/$columns);
+  $width: (($columns - 1)*$gutter)/$columns;
+  flex-basis: calc(#{$percentage} - #{$width});
+  margin-top: $gutter;
+  margin-left: $gutter/2;
+  margin-right: $gutter/2;
+  @if $columns != 1 {
+    &:nth-of-type(#{$columns}n+1) {
+      margin-right: $gutter/2;
+      margin-left: 0;
+    };
+    &:nth-of-type(#{$columns}n+#{$columns}) {
+      margin-left: $gutter/2;
+      margin-right: 0;
+    };
+  } @else if $columns == 1 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+@mixin flex-col($span, $columns, $margin: 0px) {
+  $percentage: percentage($span/$columns);
+  @if $columns != 1 {
+    flex-basis: calc(#{$percentage} - #{$margin});
+  } @else {
+    flex-basis: calc(#{$percentage});
+  }
+}
+
+/////////////////////////////////////////////
+// FLEX POSITION
+/////////////////////////////////////////////
+@mixin flex-position($horizontal, $vertical:null) {
+  @if($vertical) {
+    display: flex;
+    justify-content:$horizontal;
+    align-items: $vertical;
+  } @else {
+    display: flex;
+    justify-content:$horizontal;
+    align-items: center;
+  }
+}
+
+//////////////////////////////////////////
+// STYLE
+//////////////////////////////////////////
 .app-header {
   padding: 30px 0;
 }
+
+.bear-image {
+  width: 500px;
+  height: 300px;
+  background-size: cover;
+  background-position: center center;
+}
+
 .bear-row {
   padding: 30px 0;
+  @include flex-row();
+}
 
-  .col-4 {
-    // margin: 5px;
-    margin-bottom: 30px;
-    // background-color: red;
-  }
-
+.bear-column {
+  background-color: #EEEEEE;
+  padding: 15px;
+  @include flex-gtr-col(3,15px);
+  position: relative;
+}
+.bear-profile-image {
+  position: absolute;
+  right: 15px;
+  background-size: cover;
+  background-position: center center;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
 }

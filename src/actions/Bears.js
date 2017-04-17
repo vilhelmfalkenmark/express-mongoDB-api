@@ -16,6 +16,7 @@ export function fetchAllBears() {
 
 // Add new bear
 export function addNewBear(newBear) {
+ console.log(newBear);
   return function(dispatch) {
     axios.post("http://localhost:5000/api/bears", newBear)
     .then((response) => {
@@ -30,7 +31,6 @@ export function addNewBear(newBear) {
 
 // Delete bear
 export function deleteBear(bearID) {
-  // console.log(bearID, "från deleteBear Action");
   return function(dispatch) {
     axios.delete(`http://localhost:5000/api/bears/${bearID}`)
     .then((response) => {
@@ -48,7 +48,6 @@ export function updateBear(bear) {
   return function(dispatch) {
     axios.put(`http://localhost:5000/api/bears/${bear._id}`,bear)
     .then((response) => {
-     // console.log(response," response från editBear");
       dispatch({type: "BEAR_UPDATED", payload: response.data.updatedBear})
     })
     .catch((err) => {

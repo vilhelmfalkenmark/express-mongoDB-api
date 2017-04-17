@@ -1,9 +1,40 @@
 .app-header {
   padding: 30px 0; }
 
+.bear-image {
+  width: 500px;
+  height: 300px;
+  background-size: cover;
+  background-position: center center; }
+
 .bear-row {
-  padding: 30px 0; }
-  .bear-row .col-4 {
-    margin-bottom: 30px; }
+  padding: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; }
+
+.bear-column {
+  background-color: #EEEEEE;
+  padding: 15px;
+  flex-basis: calc(33.33333% - 10px);
+  margin-top: 15px;
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+  position: relative; }
+  .bear-column:nth-of-type(3n+1) {
+    margin-right: 7.5px;
+    margin-left: 0; }
+  .bear-column:nth-of-type(3n+3) {
+    margin-left: 7.5px;
+    margin-right: 0; }
+
+.bear-profile-image {
+  position: absolute;
+  right: 15px;
+  background-size: cover;
+  background-position: center center;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%; }
 
 /*# sourceMappingURL=stylesheet.css.map */
