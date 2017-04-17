@@ -1,16 +1,12 @@
 const express = require('express');
 const router = express.Router(); // get an instance of the express Router
-// router.get('/', (req, res) => {
-//     res.json({ message: 'hooray! welcome to our api!' });
-// });
 
 // Models
 var Bear = require('../models/bear');
 //////////////////////////////////////////
 // GET & POST FOR ALL BEARS
 //////////////////////////////////////////-
-router.route('/bears')
-    // create a bear (accessed at POST http://localhost:5000/api/bears)
+router.route('/')
     .post((req, res) => {
         var bear = new Bear();      // create a new instance of the Bear model
         bear.name = req.body.name; // set the bears name (comes from the request)
@@ -18,7 +14,6 @@ router.route('/bears')
         bear.age = req.body.age;
         bear.image_url = req.body.image_url;
         bear.description = req.body.description;
-        // save the bear and check for errors
         bear.save((err) => {
             if (err) {
              res.send(err);
@@ -42,7 +37,7 @@ router.route('/bears')
 //////////////////////////////////////////
 // SINGLE BEAR ROUTE
 //////////////////////////////////////////
-router.route('/bears/:bear_id')
+router.route('/:bear_id')
     .get((req, res) => {
         Bear.findById(req.params.bear_id, (err, bear) => {
             if (err) {
